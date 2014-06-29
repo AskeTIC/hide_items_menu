@@ -1,17 +1,21 @@
 <?php
-/* ***********************************************************************
- * @author : Purusothaman Ramanujam
- * @link http://www.iYaffle.com/
- * ***********************************************************************/
 
-	register_elgg_event_handler('init','system','disable_members_menu_item_init');
+elgg_register_event_handler('init', 'system', 'hide_members_menu_item_init');
 
-	function disable_members_menu_item_init() 
-	{
-		if (!elgg_is_admin_logged_in()) // I only show More menu and Members item for administrator
-		{
-           elgg_unregister_plugin_hook_handler('prepare', 'menu:site', 'elgg_site_menu_setup');
-		   elgg_unregister_menu_item('site','members');
-		}
+function hide_members_menu_item_init() {
+
+}
+
+/* controlador de la página*/
+function hide_members_menu_item_page_handler() {
+    $params = array(
+        'title' => 'Hello world!',
+        'content' => 'This is my first plugin.',
+        'filter' => '',
+    );
+
+    $body = elgg_view_layout('content', $params);
+
+    echo elgg_view_page('Hello', $body);
 }
 ?>
